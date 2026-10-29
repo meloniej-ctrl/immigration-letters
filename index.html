@@ -87,6 +87,11 @@ button.primary { background: var(--accent-ink); border-color: var(--accent-ink);
 button:hover { filter: brightness(.97); }
 button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .toast { font-size: 13px; color: var(--accent-ink); min-height: 1.4em; }
+.upload { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+.upload p { margin: 0; font-size: 14px; color: var(--muted); max-width: 46ch; }
+.upload b { display: block; color: var(--ink); font-weight: 500; font-size: 15px; }
+.upload a { display: inline-block; text-decoration: none; background: var(--accent-ink); color: #fff; font-weight: 500; font-size: 14px; border-radius: 8px; padding: 10px 16px; }
+.upload a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .howto { background: var(--accent-soft); border: 1px solid #c5e1cf; border-radius: 10px; padding: 12px 14px; font-size: 14px; }
 .howto ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
 .sheet.copyout { font-size: 18.5px; line-height: 1.95; }
@@ -135,7 +140,7 @@ mark.ph { background: var(--mark); color: var(--warn); padding: 0 3px; border-ra
     <li><b>Copy the letter</b>Paste into Word, Google Docs or Pages.</li>
     <li><b>Print it</b>Check every detail is right.</li>
     <li><b>Sign in ink</b>Blue or black pen, by hand.</li>
-    <li><b>Send it back</b>A clear scan or photo, plus your ID copy. Keep the original.</li>
+    <li><b>Upload it</b>A clear scan or photo, plus your ID copy, through the upload form. Keep the original.</li>
   </ol>
 
   <div class="rules">
@@ -265,6 +270,10 @@ mark.ph { background: var(--mark); color: var(--warn); padding: 0 3px; border-ra
       </div>
       <div class="toast" id="toast" aria-live="polite"></div>
       <article class="sheet" id="sheet"></article>
+      <div class="upload">
+        <p><b>Signed it? Upload it here.</b>Add a photo or scan of every signed page and your ID copy. You'll need a Google account. Only Melonie can see what you upload.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf8RavryiE1A69Y9ehQs1Do1ypZjp55LQ54Q5OukjWNFyb0rQ/viewform" target="_blank" rel="noopener">Upload signed letter</a>
+      </div>
     </section>
   </div>
 </div>
@@ -443,14 +452,14 @@ mark.ph { background: var(--mark); color: var(--warn); padding: 0 3px; border-ra
   }
 
   const HOWTO = {
-    print: ['Tap <b>Print</b>, or tap <b>Copy letter</b> and paste it into Word or Google Docs to print from there.', 'Read the printed letter over once more.', 'Sign above your printed name in blue or black ink.', 'Send Melonie a clear photo or scan of every page, plus a copy of your ID.', 'Keep the signed original somewhere safe.'],
-    handwrite: ['The letter on the right switches to large print so it is easy to copy.', 'Write it out word for word on plain paper in blue or black ink, filling in any highlighted blanks.', 'Sign and date it at the bottom.', 'Send Melonie a clear photo of every page, taken in good light, plus a copy of your ID.', 'Keep the handwritten original.'],
+    print: ['Tap <b>Print</b>, or tap <b>Copy letter</b> and paste it into Word or Google Docs to print from there.', 'Read the printed letter over once more.', 'Sign above your printed name in blue or black ink.', 'Upload a clear photo or scan of every page, plus a copy of your ID, with the <b>Upload signed letter</b> button.', 'Keep the signed original somewhere safe.'],
+    handwrite: ['The letter on the right switches to large print so it is easy to copy.', 'Write it out word for word on plain paper in blue or black ink, filling in any highlighted blanks.', 'Sign and date it at the bottom.', 'Upload a clear photo of every page, taken in good light, plus a copy of your ID, with the <b>Upload signed letter</b> button.', 'Keep the handwritten original.'],
     melonie: ['Fill in the form completely.', 'Tap <b>Copy letter for Melonie</b> and paste it into a text or email to her.', 'Melonie prints it and brings or mails it to you.', 'Read it over, then sign in ink above your printed name and date it.', 'Give the signed page back to Melonie with a copy of your ID.']
   };
   const COPY_LABEL = { print: 'Copy letter', handwrite: 'Copy letter', melonie: 'Copy letter for Melonie' };
   const COPY_DONE = {
     print: 'Copied. Paste it into Word or Google Docs, print, and sign in ink.',
-    handwrite: 'Copied. Write it out by hand, sign in ink, and send Melonie a photo with your ID copy.',
+    handwrite: 'Copied. Write it out by hand, sign in ink, and upload a photo with your ID copy.',
     melonie: 'Copied. Paste it into a text or email to Melonie.'
   };
   const method = () => HOWTO[$('signMethod').value] ? $('signMethod').value : 'print';
