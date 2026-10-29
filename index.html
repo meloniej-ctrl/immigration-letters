@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Melonie &amp; Michael Affidavit Builder</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+/* Layout: form column on the left, a sheet of letter paper on the right that writes itself; stacks on phones.
+   Single light theme by design (soft green on paper white). */
+:root {
+  --bg: #f5f9f5;
+  --surface: #ffffff;
+  --ink: #1f2b25;
+  --muted: #5b6b62;
+  --line: #dce7df;
+  --accent: #79b892;
+  --accent-soft: #e6f3ea;
+  --accent-ink: #2f6a49;
+  --mark: #fbf1c4;
+  --warn: #8a5a12;
+  --font-ui: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-doc: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-ui); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 28px; }
+
+header { display: grid; gap: 10px; max-width: 70ch; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); font-weight: 500; }
+h1 { font-family: var(--font-doc); font-weight: 400; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; margin: 0; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; counter-reset: s; }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; font-size: 13.5px; color: var(--muted); }
+.steps li::before { content: counter(s); width: 24px; height: 24px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); display: grid; place-items: center; font-size: 12.5px; font-weight: 500; }
+.steps b { color: var(--ink); font-weight: 500; }
+
+.rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.rule { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; font-size: 13.5px; color: var(--muted); }
+.rule b { display: block; color: var(--ink); font-weight: 500; font-size: 14px; }
+
+.main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 28px; align-items: start; }
+
+form { display: grid; gap: 22px; }
+fieldset { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; margin: 0; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+legend { font-family: var(--font-doc); font-size: 19px; padding: 0 6px; }
+.hint { font-size: 13px; color: var(--muted); margin: -4px 0 0; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field { display: grid; gap: 5px; min-width: 0; }
+label { font-size: 13px; color: var(--muted); font-weight: 500; }
+input[type=text], input[type=date], input[type=email], input[type=tel], select, textarea {
+  width: 100%; font: inherit; font-size: 15px; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px;
+}
+textarea { min-height: 84px; resize: vertical; line-height: 1.5; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); background: var(--surface); }
+::placeholder { color: #9aa8a0; }
+
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--ink); font-weight: 400; cursor: pointer; }
+.check input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent-ink); flex: none; }
+.exp { display: grid; gap: 8px; padding: 12px; border-radius: 10px; border: 1px solid var(--line); }
+.exp.on { background: var(--accent-soft); border-color: #c5e1cf; }
+.exp textarea { background: var(--surface); }
+
+.preview { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 12px; min-width: 0; }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.status { font-size: 13px; color: var(--warn); }
+.status.done { color: var(--accent-ink); }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+button { font: inherit; font-size: 14px; font-weight: 500; border-radius: 8px; padding: 9px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+button.primary { background: var(--accent-ink); border-color: var(--accent-ink); color: #fff; }
+button:hover { filter: brightness(.97); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.toast { font-size: 13px; color: var(--accent-ink); min-height: 1.4em; }
+.howto { background: var(--accent-soft); border: 1px solid #c5e1cf; border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+.howto ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.sheet.copyout { font-size: 18.5px; line-height: 1.95; }
+
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 1px 2px rgba(31,43,37,.05), 0 10px 30px rgba(31,43,37,.06);
+  padding: clamp(22px, 4vw, 48px); font-family: var(--font-doc); font-size: 15.5px; line-height: 1.6; max-height: 78vh; overflow: auto; }
+.sheet .title { text-align: center; font-weight: 500; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; margin: 0 0 18px; text-wrap: balance; }
+.sheet .meta { margin: 0 0 18px; }
+.sheet h3 { font-family: var(--font-doc); font-weight: 500; font-size: 15.5px; margin: 18px 0 6px; }
+.sheet p { margin: 0 0 10px; }
+.sheet .sig { margin-top: 36px; }
+.sheet .sig .line { border-top: 1px solid var(--ink); width: min(280px, 80%); padding-top: 4px; }
+mark.ph { background: var(--mark); color: var(--warn); padding: 0 3px; border-radius: 3px; font-family: var(--font-ui); font-size: .86em; }
+.privacy { font-size: 12.5px; color: var(--muted); }
+
+@media (max-width: 920px) {
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .preview { position: static; }
+  .sheet { max-height: none; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rules { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+}
+@media print {
+  body { background: #fff; padding: 0; }
+  header, .steps, .rules, form, .bar, .toast, .privacy { display: none !important; }
+  .main { display: block; }
+  .sheet { box-shadow: none; border: 0; max-height: none; overflow: visible; padding: 0; }
+  mark.ph { background: none; color: inherit; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Form I-130 · Supporting affidavit</span>
+    <h1>Write your affidavit for Melonie &amp; Michael</h1>
+    <p>Thank you for vouching for us. Answer the questions about what you've personally seen, and the letter on the right writes itself. Then print it, sign it in ink, and send it back with a copy of your ID.</p>
+  </header>
+
+  <ol class="steps" aria-label="How it works">
+    <li><b>Fill in the form</b>Your words, your memories.</li>
+    <li><b>Copy the letter</b>Paste into Word, Google Docs or Pages.</li>
+    <li><b>Print it</b>Check every detail is right.</li>
+    <li><b>Sign in ink</b>Blue or black pen, by hand.</li>
+    <li><b>Send it back</b>A clear scan or photo, plus your ID copy. Keep the original.</li>
+  </ol>
+
+  <div class="rules">
+    <div class="rule"><b>No notary needed</b>The letter ends with a federal declaration under penalty of perjury (28 U.S.C. § 1746), which USCIS accepts without notarization.</div>
+    <div class="rule"><b>No digital signatures</b>USCIS rejects DocuSign, typed names, and pasted signature images. Sign the printed page by hand; a scan or photo of that page is fine.</div>
+    <div class="rule"><b>Include your ID copy</b>Your U.S. passport photo page, birth certificate, naturalization certificate, or green card (front and back).</div>
+  </div>
+
+  <div class="main">
+    <form id="f" autocomplete="on" novalidate>
+      <fieldset>
+        <legend>About you</legend>
+        <div class="row">
+          <div class="field"><label for="name">Full legal name</label><input type="text" id="name" autocomplete="name" placeholder="As it appears on your ID"></div>
+          <div class="field"><label for="dob">Date of birth</label><input type="date" id="dob"></div>
+        </div>
+        <div class="field"><label for="pob">Place of birth</label><input type="text" id="pob" placeholder="City, State or Country"></div>
+        <div class="row">
+          <div class="field"><label for="status">Your status</label>
+            <select id="status">
+              <option value="">Choose one</option>
+              <option value="a U.S. citizen by birth">U.S. citizen by birth</option>
+              <option value="a naturalized U.S. citizen">Naturalized U.S. citizen</option>
+              <option value="a lawful permanent resident of the United States">Green card holder (permanent resident)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="proof">ID you'll attach</label>
+            <select id="proof">
+              <option value="">Choose one</option>
+              <option value="U.S. passport">U.S. passport</option>
+              <option value="U.S. birth certificate">U.S. birth certificate</option>
+              <option value="certificate of naturalization">Naturalization certificate</option>
+              <option value="permanent resident card">Green card</option>
+              <option value="passport">Passport (non-U.S.)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field" id="statusOtherWrap" hidden><label for="statusOther">Describe your status</label><input type="text" id="statusOther" placeholder="e.g., a citizen of Jamaica"></div>
+          <div class="field" id="proofOtherWrap" hidden><label for="proofOther">Which document?</label><input type="text" id="proofOther" placeholder="e.g., Jamaican passport"></div>
+        </div>
+        <div class="field"><label for="address">Home address</label><input type="text" id="address" autocomplete="street-address" placeholder="Street, City, State ZIP, Country"></div>
+        <div class="row">
+          <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" autocomplete="tel"></div>
+          <div class="field"><label for="email">Email</label><input type="email" id="email" autocomplete="email"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="occupation">Occupation</label><input type="text" id="occupation" placeholder="e.g., Registered nurse"></div>
+          <div class="field"><label for="employer">Employer (optional)</label><input type="text" id="employer"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>How you know them</legend>
+        <div class="row">
+          <div class="field"><label for="relType">You are</label>
+            <select id="relType">
+              <option value="one of Melonie's closest friends">A close friend of Melonie</option>
+              <option value="a close friend of Michael">A close friend of Michael</option>
+              <option value="a close friend of the couple">A close friend of both</option>
+              <option value="family">Family</option>
+            </select>
+          </div>
+          <div class="field" id="relDetailWrap" hidden><label for="relDetail">How are you related?</label><input type="text" id="relDetail" placeholder="e.g., Melonie's cousin"></div>
+        </div>
+        <label class="check"><input type="checkbox" id="together"> I met Melonie and Michael at the same time, as a couple</label>
+        <div id="sepWrap" style="display:grid;gap:14px">
+          <div class="row">
+            <div class="field"><label for="mYear">Known Melonie since (year)</label><input type="text" id="mYear" inputmode="numeric" placeholder="e.g., 2008"></div>
+            <div class="field"><label for="kYear">Known Michael since (year)</label><input type="text" id="kYear" inputmode="numeric" placeholder="e.g., 2019"></div>
+          </div>
+          <div class="field"><label for="mHow">How you met Melonie</label><input type="text" id="mHow" placeholder="e.g., we were classmates at ___ High School in Kingston, Jamaica"></div>
+          <div class="field"><label for="kHow">How you met Michael</label><input type="text" id="kHow" placeholder="e.g., I was there the night he and Melonie first met"></div>
+        </div>
+        <div id="togWrap" style="display:grid;gap:14px" hidden>
+          <div class="field"><label for="togetherWhen">When (month and year)</label><input type="text" id="togetherWhen" placeholder="e.g., June 2019"></div>
+          <div class="field"><label for="togetherHow">How you met them</label><input type="text" id="togetherHow" placeholder="e.g., through mutual friends, when they had just started dating"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>What you've seen</legend>
+        <p class="hint">Check what applies to you. In each box, give dates (approximate is fine), places, and one or two moments you remember. Specific details carry far more weight than adjectives.</p>
+        <div id="exps"></div>
+        <div class="field"><label for="story">Anything else, in your own words (optional)</label><textarea id="story" placeholder="A moment that shows how they are together"></textarea></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your closing statement</legend>
+        <div class="field"><label for="belief">Why you believe their marriage is genuine</label><textarea id="belief"></textarea></div>
+        <p class="hint">Edit this so it sounds like you. Only say what you personally believe.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>How you'll sign</legend>
+        <div class="field"><label for="signMethod">Choose what works for you</label>
+          <select id="signMethod">
+            <option value="print">I'll print it and sign it in ink</option>
+            <option value="handwrite">No printer: I'll write it out by hand</option>
+            <option value="melonie">Melonie will print it and get it to me to sign</option>
+          </select>
+        </div>
+        <div class="howto" id="howto"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Where and when you'll sign</legend>
+        <div class="row">
+          <div class="field"><label for="city">City and state</label><input type="text" id="city" placeholder="e.g., North Lauderdale, Florida"></div>
+          <div class="field"><label for="signDate">Date you'll sign</label><input type="date" id="signDate"></div>
+        </div>
+        <p class="hint">Leave the date blank if you'd rather write it by hand when you sign.</p>
+      </fieldset>
+      <p class="privacy">Your answers are saved only in this browser on this device, so you can come back later. Nothing is sent anywhere. Use “Clear form” when you're done.</p>
+    </form>
+
+    <section class="preview" aria-label="Your letter">
+      <div class="bar">
+        <span class="status" id="status-line" aria-live="polite"></span>
+        <div class="btns">
+          <button type="button" id="clear">Clear form</button>
+          <button type="button" id="print">Print</button>
+          <button type="button" class="primary" id="copy">Copy letter</button>
+        </div>
+      </div>
+      <div class="toast" id="toast" aria-live="polite"></div>
+      <article class="sheet" id="sheet"></article>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const KEY = 'mm-affidavit-v1';
+  const DEFAULT_BELIEF = "Based on everything I have personally seen, I believe Melonie and Michael's marriage is genuine. They married because they love each other and intend to build a life together.";
+
+  const EXPS = [
+    { id: 'meet',    label: 'I was there when they first met', lead: 'I was present when Melonie and Michael first met.', hint: 'Where and when was it? What do you remember about that day?' },
+    { id: 'dating',  label: 'I spent time with them while they were dating', lead: 'I spent time with Melonie and Michael as a couple while they were dating.', hint: 'Dates, outings or trips you joined, and when. What did you notice about them?' },
+    { id: 'wedding', label: 'I attended their wedding', lead: 'I attended their wedding.', hint: 'Date, place, and a detail from the day.' },
+    { id: 'home',    label: 'I have visited or stayed at their home', lead: 'I have visited and spent time in their home.', hint: 'Which home (city), roughly when and how often, and what daily life looked like there.' },
+    { id: 'holidays',label: 'I spent holidays or family dinners with them', lead: 'I have spent holidays and family gatherings with them.', hint: 'Which holidays and years (e.g., Thanksgiving 2023, Christmas 2024), where, and who was there.' },
+    { id: 'alex',    label: 'I have seen Michael with Alex', lead: "I have seen Michael's relationship with Melonie's son, Alex.", hint: 'Specific things you saw Michael do with or for Alex, and how Alex responds to him.' },
+    { id: 'other',   label: 'Something else', lead: '', hint: 'Describe what you saw, with dates and places.' }
+  ];
+
+  // Build experience blocks
+  const expsEl = $('exps');
+  expsEl.style.display = 'grid'; expsEl.style.gap = '10px';
+  EXPS.forEach(e => {
+    const box = document.createElement('div');
+    box.className = 'exp'; box.id = 'box_' + e.id;
+    box.innerHTML =
+      '<label class="check"><input type="checkbox" id="ex_' + e.id + '"> ' + e.label + '</label>' +
+      '<div class="field" id="dw_' + e.id + '" hidden><label for="d_' + e.id + '">Details</label>' +
+      '<textarea id="d_' + e.id + '" placeholder="' + e.hint.replace(/"/g, '&quot;') + '"></textarea></div>';
+    expsEl.appendChild(box);
+  });
+
+  const ids = ['name','dob','pob','status','statusOther','proof','proofOther','address','phone','email','occupation','employer',
+    'relType','relDetail','together','signMethod','mYear','mHow','kYear','kHow','togetherWhen','togetherHow','story','belief','city','signDate']
+    .concat(EXPS.flatMap(e => ['ex_' + e.id, 'd_' + e.id]));
+
+  // Restore saved draft
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (err) { saved = null; }
+  ids.forEach(id => {
+    const el = $(id); if (!el) return;
+    if (saved && id in saved) { if (el.type === 'checkbox') el.checked = !!saved[id]; else el.value = saved[id]; }
+  });
+  if (!$('belief').value) $('belief').value = DEFAULT_BELIEF;
+
+  function save() {
+    const data = {};
+    ids.forEach(id => { const el = $(id); if (el) data[id] = el.type === 'checkbox' ? el.checked : el.value; });
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (err) {}
+  }
+
+  const v = id => (($(id) && $(id).value) || '').trim();
+  const strip = s => s.replace(/[\s.]+$/, '');
+  const PH = label => ({ ph: label });
+  const val = (id, label) => v(id) ? v(id) : PH(label);
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function fmtDate(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    return m ? MONTHS[+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1] : '';
+  }
+  function sentence(s) { s = s.trim(); if (!s) return s; return /[.!?"”]$/.test(s) ? s : s + '.'; }
+
+  function syncVisibility() {
+    $('statusOtherWrap').hidden = $('status').value !== 'other';
+    $('proofOtherWrap').hidden = $('proof').value !== 'other';
+    $('relDetailWrap').hidden = $('relType').value !== 'family';
+    const tog = $('together').checked;
+    $('sepWrap').hidden = tog; $('togWrap').hidden = !tog;
+    EXPS.forEach(e => {
+      const on = $('ex_' + e.id).checked;
+      $('dw_' + e.id).hidden = !on;
+      $('box_' + e.id).classList.toggle('on', on);
+    });
+  }
+
+  function buildBlocks() {
+    const B = [];
+    const MEL = 'Jah Mekie Melonie James (“Melonie”)';
+    const MIC = 'Michael St. Andrew Morrison (“Michael”)';
+    B.push({ t: 'title', c: ['Affidavit in Support of the Bona Fide Marriage of Jah Mekie Melonie James and Michael St. Andrew Morrison'] });
+    B.push({ t: 'meta', lines: [
+      [{ b: 'Re:' }, ' Form I-130, Petition for Alien Relative'],
+      [{ b: 'Petitioner:' }, ' Michael St. Andrew Morrison'],
+      [{ b: 'Beneficiary:' }, ' Jah Mekie Melonie James'],
+      [{ b: 'USCIS Receipt Number:' }, ' Not yet issued']
+    ]});
+
+    // 1. About me
+    B.push({ t: 'h', c: ['1. About me'] });
+    let status = $('status').value;
+    status = status === 'other' ? (v('statusOther') || PH('your status')) : (status || PH('U.S. citizen / permanent resident'));
+    let proof = $('proof').value;
+    proof = proof === 'other' ? (v('proofOther') || PH('ID document')) : (proof || PH('ID document'));
+    const dob = fmtDate(v('dob'));
+    const p1 = ['My name is ', val('name', 'Full legal name'), '. I was born on ', dob || PH('Date of birth'), ' in ', v('pob') ? strip(v('pob')) : PH('Place of birth'),
+      '. I am ', status, ', and a copy of my ', proof, ' is attached. I currently live at ', v('address') ? strip(v('address')) : PH('Home address'),
+      '. My phone number is ', val('phone', 'Phone'), ' and my email address is ', val('email', 'Email'), '. My occupation is ', v('occupation') ? strip(v('occupation')) : PH('Occupation')];
+    if (v('employer')) p1.push(', at ', strip(v('employer')));
+    p1.push('. I am over 18 years old and competent to make this statement.');
+    B.push({ t: 'p', c: p1 });
+
+    // 2. How I know them
+    B.push({ t: 'h', c: ['2. How I know the couple'] });
+    const rel = $('relType').value === 'family' ? (v('relDetail') ? strip(v('relDetail')) : PH('how you are related')) : $('relType').value;
+    if ($('together').checked) {
+      B.push({ t: 'p', c: ['I met ', MEL, ' and ', MIC, ' at the same time, around ', v('togetherWhen') ? strip(v('togetherWhen')) : PH('month and year'), ', ',
+        v('togetherHow') ? strip(v('togetherHow')) : PH('how you met them'), '. I have known them as a couple from the beginning of their relationship.'] });
+    } else {
+      B.push({ t: 'p', c: ['I have known ', MEL, ' since ', val('mYear', 'year'), ', when ', v('mHow') ? strip(v('mHow')) : PH('how you met Melonie'), '. ',
+        'I have known ', MIC, ' since ', val('kYear', 'year'), ', when ', v('kHow') ? strip(v('kHow')) : PH('how you met Michael'), '.'] });
+    }
+    B.push({ t: 'p', c: ['I am ', rel, '.'] });
+
+    // 3. What I have seen
+    B.push({ t: 'h', c: ['3. Their relationship as I have seen it'] });
+    let any = false;
+    EXPS.forEach(e => {
+      if (!$('ex_' + e.id).checked) return;
+      any = true;
+      const d = v('d_' + e.id);
+      const c = [];
+      if (e.lead) c.push(e.lead + ' ');
+      c.push(d ? sentence(d) : PH('Add dates, places, and what you saw'));
+      B.push({ t: 'p', c });
+    });
+    if (v('story')) { any = true; B.push({ t: 'p', c: [sentence(v('story'))] }); }
+    if (!any) B.push({ t: 'p', c: [PH('Check the experiences that apply to you and describe them')] });
+
+    // 4. Belief
+    B.push({ t: 'h', c: ['4. Why I believe their marriage is genuine'] });
+    B.push({ t: 'p', c: [v('belief') ? sentence(v('belief')) : PH('Your closing statement')] });
+
+    // 5. Declaration
+    B.push({ t: 'h', c: ['5. Declaration'] });
+    B.push({ t: 'p', c: ['I declare under penalty of perjury under the laws of the United States of America that the foregoing is true and correct to the best of my personal knowledge.'] });
+    const sd = fmtDate(v('signDate'));
+    B.push({ t: 'p', c: ['Executed on ', sd || '____________________', ' at ', v('city') ? strip(v('city')) : PH('City, State'), '.'] });
+    B.push({ t: 'sig', c: [val('name', 'Full legal name')] });
+    return B;
+  }
+
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  function segHTML(parts, forClipboard) {
+    return parts.map(p => {
+      if (typeof p === 'string') return esc(p);
+      if (p.ph) return forClipboard ? '[' + esc(p.ph) + ']' : '<mark class="ph">[' + esc(p.ph) + ']</mark>';
+      if (p.b) return '<b>' + esc(p.b) + '</b>';
+      return '';
+    }).join('');
+  }
+  const segText = parts => parts.map(p => typeof p === 'string' ? p : p.ph ? '[' + p.ph + ']' : p.b ? p.b : '').join('');
+
+  function toHTML(B, clip) {
+    return B.map(b => {
+      if (b.t === 'title') return clip ? '<p style="text-align:center"><b>' + segHTML(b.c, true).toUpperCase() + '</b></p>' : '<p class="title">' + segHTML(b.c) + '</p>';
+      if (b.t === 'meta') return '<p class="meta">' + b.lines.map(l => segHTML(l, clip)).join('<br>') + '</p>';
+      if (b.t === 'h') return clip ? '<p><b>' + segHTML(b.c, true) + '</b></p>' : '<h3>' + segHTML(b.c) + '</h3>';
+      if (b.t === 'sig') return clip ? '<p><br><br>______________________________<br>' + segHTML(b.c, true) + '</p>' : '<div class="sig"><div class="line">' + segHTML(b.c) + '</div></div>';
+      return '<p>' + segHTML(b.c, clip) + '</p>';
+    }).join('');
+  }
+  function toText(B) {
+    return B.map(b => {
+      if (b.t === 'title') return segText(b.c).toUpperCase();
+      if (b.t === 'meta') return b.lines.map(segText).join('\n');
+      if (b.t === 'sig') return '\n\n______________________________\n' + segText(b.c);
+      return segText(b.c);
+    }).join('\n\n');
+  }
+  function countPH(B) {
+    let n = 0;
+    const walk = parts => parts.forEach(p => { if (p && p.ph) n++; });
+    B.forEach(b => { if (b.c) walk(b.c); if (b.lines) b.lines.forEach(walk); });
+    return n;
+  }
+
+  const HOWTO = {
+    print: ['Tap <b>Print</b>, or tap <b>Copy letter</b> and paste it into Word or Google Docs to print from there.', 'Read the printed letter over once more.', 'Sign above your printed name in blue or black ink.', 'Send Melonie a clear photo or scan of every page, plus a copy of your ID.', 'Keep the signed original somewhere safe.'],
+    handwrite: ['The letter on the right switches to large print so it is easy to copy.', 'Write it out word for word on plain paper in blue or black ink, filling in any highlighted blanks.', 'Sign and date it at the bottom.', 'Send Melonie a clear photo of every page, taken in good light, plus a copy of your ID.', 'Keep the handwritten original.'],
+    melonie: ['Fill in the form completely.', 'Tap <b>Copy letter for Melonie</b> and paste it into a text or email to her.', 'Melonie prints it and brings or mails it to you.', 'Read it over, then sign in ink above your printed name and date it.', 'Give the signed page back to Melonie with a copy of your ID.']
+  };
+  const COPY_LABEL = { print: 'Copy letter', handwrite: 'Copy letter', melonie: 'Copy letter for Melonie' };
+  const COPY_DONE = {
+    print: 'Copied. Paste it into Word or Google Docs, print, and sign in ink.',
+    handwrite: 'Copied. Write it out by hand, sign in ink, and send Melonie a photo with your ID copy.',
+    melonie: 'Copied. Paste it into a text or email to Melonie.'
+  };
+  const method = () => HOWTO[$('signMethod').value] ? $('signMethod').value : 'print';
+
+  let current = [];
+  function render() {
+    syncVisibility();
+    const m = method();
+    $('howto').innerHTML = '<ol>' + HOWTO[m].map(s => '<li>' + s + '</li>').join('') + '</ol>';
+    $('sheet').classList.toggle('copyout', m === 'handwrite');
+    $('copy').textContent = COPY_LABEL[m];
+    current = buildBlocks();
+    $('sheet').innerHTML = toHTML(current, false);
+    const n = countPH(current);
+    const s = $('status-line');
+    s.textContent = n ? n + (n === 1 ? ' blank left' : ' blanks left') + ' (highlighted)' : 'Every blank is filled in';
+    s.classList.toggle('done', !n);
+  }
+
+  $('f').addEventListener('input', () => { render(); save(); });
+  $('f').addEventListener('change', () => { render(); save(); });
+  $('f').addEventListener('submit', e => e.preventDefault());
+
+  let toastTimer;
+  function toast(msg) { $('toast').textContent = msg; clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('toast').textContent = ''; }, 5000); }
+
+  $('copy').addEventListener('click', () => {
+    const text = toText(current);
+    const html = '<div style="font-family:Georgia,serif;font-size:12pt;line-height:1.5">' + toHTML(current, true) + '</div>';
+    const done = () => toast(COPY_DONE[method()]);
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents($('sheet'));
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      toast('The letter is selected. Press Ctrl+C (or ⌘C) to copy it.');
+    };
+    try {
+      if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+        navigator.clipboard.write([new ClipboardItem({
+          'text/plain': new Blob([text], { type: 'text/plain' }),
+          'text/html': new Blob([html], { type: 'text/html' })
+        })]).then(done).catch(() => {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fallback);
+      } else { fallback(); }
+    } catch (err) { fallback(); }
+  });
+
+  let armed = false, armTimer;
+  $('clear').addEventListener('click', () => {
+    if (!armed) {
+      armed = true; $('clear').textContent = 'Tap again to clear';
+      armTimer = setTimeout(() => { armed = false; $('clear').textContent = 'Clear form'; }, 3000);
+      return;
+    }
+    clearTimeout(armTimer); armed = false; $('clear').textContent = 'Clear form';
+    ids.forEach(id => { const el = $(id); if (!el) return; if (el.type === 'checkbox') el.checked = false; else if (el.tagName === 'SELECT') el.selectedIndex = 0; else el.value = ''; });
+    $('belief').value = DEFAULT_BELIEF;
+    try { localStorage.removeItem(KEY); } catch (err) {}
+    render(); toast('Form cleared.');
+  });
+
+  $('print').addEventListener('click', () => window.print());
+  render();
+})();
+</script>
+
+</body>
+</html>
